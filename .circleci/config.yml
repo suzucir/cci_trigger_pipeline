@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run:
           name: "Build"
-          run: echo "ビルド用のジョブです！"
+          command: echo "ビルド用のジョブです！"
   deploy:
     docker:
       - image: cimg/base:stable
@@ -22,7 +22,7 @@ jobs:
       - checkout
       - run:
           name: "Deployment"
-          run: echo "デプロイ用のジョブです！"
+          command: echo "デプロイ用のジョブです！"
 
 workflows:
   build-workflow:
@@ -33,7 +33,7 @@ workflows:
 
   deploy-workflow:
     when:
-      equal: [ build, << pipeline.parameters.action >> ]
+      equal: [ deploy, << pipeline.parameters.action >> ]
     jobs:
       - deploy:
           filters:
