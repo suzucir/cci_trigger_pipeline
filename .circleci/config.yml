@@ -27,7 +27,7 @@ jobs:
 workflows:
   build-workflow:
     when:
-      equal: [ test, << pipeline.parameters.action >> ]
+      equal: [ build, << pipeline.parameters.action >> ]
     jobs:
       - build
 
