@@ -30,4 +30,4 @@ workflows:
   deploy-workflow:
     when: << pipeline.parameters.deploy >>
     jobs:
-      - deploy-job:
+      - deploy-job
