@@ -31,7 +31,3 @@ workflows:
     when: << pipeline.parameters.deploy >>
     jobs:
       - deploy-job:
-          filters:
-            branches:
-              only:
-                - main
