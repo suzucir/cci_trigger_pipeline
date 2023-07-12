@@ -7,19 +7,17 @@ parameters:
     default: build
 
 jobs:
-  build:
+  build-job:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - run:
           name: "Build"
           command: echo "ビルド用のジョブです！"
-  deploy:
+  deploy-job:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - run:
           name: "Deployment"
           command: echo "デプロイ用のジョブです！"
@@ -29,13 +27,13 @@ workflows:
     when:
       equal: [ build, << pipeline.parameters.action >> ]
     jobs:
-      - build
+      - build-job
 
   deploy-workflow:
     when:
       equal: [ deploy, << pipeline.parameters.action >> ]
     jobs:
-      - deploy:
+      - deploy-job:
           filters:
             branches:
               only:
